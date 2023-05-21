@@ -1,0 +1,30 @@
+{
+  "manifest_version": 3,
+  "name": "Keyboard Logger",
+  "version": "1.0",
+  "description": "Logs a message to the console on keyboard shortcut",
+  "permissions": [
+    "scripting",
+    "activeTab",
+    "storage"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "commands": {
+    "logMessage": {
+      "description": "Logs a message to the console",
+      "suggested_key": {
+        "default": "Alt+1"
+      }
+    }
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    }
+  }
+}
