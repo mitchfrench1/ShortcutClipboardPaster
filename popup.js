@@ -1,4 +1,19 @@
 document.addEventListener('DOMContentLoaded', function () {
+    var radioButtons = document.getElementsByName('options');
+    var selectedOption = '';
+
+    function handleRadioButtonChange() {
+        console.log("a");
+        console.log(selectedOption);
+        selectedOption = document.querySelector('input[name="options"]:checked').value;
+        chrome.storage.local.set({ selectedOption: selectedOption });
+    }
+
+    for (var i = 0; i < radioButtons.length; i++) {
+        console.log("b");
+        radioButtons[i].addEventListener('change', handleRadioButtonChange);
+    }
+
     var wordInput1 = document.getElementById('wordInput1');
     var submitButton1 = document.getElementById('submitButton1');
     var wordDisplay1 = document.getElementById('wordDisplay1');
