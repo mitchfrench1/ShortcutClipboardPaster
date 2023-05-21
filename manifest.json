@@ -13,9 +13,15 @@
   },
   "commands": {
     "logMessage": {
-      "description": "Logs a message to the console",
+      "description": "Logs a message for Word 1 to the console",
       "suggested_key": {
         "default": "Alt+1"
+      }
+    },
+    "logMessage2": {
+      "description": "Logs a message for Word 2 to the console",
+      "suggested_key": {
+        "default": "Alt+2"
       }
     }
   },

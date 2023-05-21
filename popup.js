@@ -3,11 +3,21 @@ document.addEventListener('DOMContentLoaded', function () {
     var submitButton1 = document.getElementById('submitButton1');
     var wordDisplay1 = document.getElementById('wordDisplay1');
 
-    // Retrieve the word from Chrome storage when the popup is loaded
+    var wordInput2 = document.getElementById('wordInput2');
+    var submitButton2 = document.getElementById('submitButton2');
+    var wordDisplay2 = document.getElementById('wordDisplay2');
+
     chrome.storage.local.get('theWord1', function (result) {
         var storedWord1 = result.theWord1;
         if (storedWord1) {
             wordDisplay1.textContent = storedWord1;
+        }
+    });
+
+    chrome.storage.local.get('theWord2', function (result) {
+        var storedWord2 = result.theWord2;
+        if (storedWord2) {
+            wordDisplay2.textContent = storedWord2;
         }
     });
 
@@ -18,12 +28,28 @@ document.addEventListener('DOMContentLoaded', function () {
             chrome.storage.local.set({ theWord1: word1 });
         } else {
             wordDisplay1.textContent = '';
-            chrome.storage.local.remove('theWord1'); // Remove the word from storage if it's empty
+            chrome.storage.local.remove('theWord1');
+        }
+    });
+
+    submitButton2.addEventListener('click', function () {
+        var word2 = wordInput2.value.trim();
+        if (word2 !== '') {
+            wordDisplay2.textContent = word2;
+            chrome.storage.local.set({ theWord2: word2 });
+        } else {
+            wordDisplay2.textContent = '';
+            chrome.storage.local.remove('theWord2');
         }
     });
 
     removeButton1.addEventListener('click', function () {
         wordDisplay1.textContent = '';
         chrome.storage.local.remove('theWord1');
-    })
+    });
+
+    removeButton2.addEventListener('click', function () {
+        wordDisplay2.textContent = '';
+        chrome.storage.local.remove('theWord2');
+    });
 });

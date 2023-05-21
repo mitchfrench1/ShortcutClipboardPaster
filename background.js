@@ -15,5 +15,22 @@ chrome.commands.onCommand.addListener(function (command) {
                 },
             });
         });
+    } else if (command === "logMessage2") {
+        chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+            chrome.scripting.executeScript({
+                target: { tabId: tabs[0].id },
+                function: () => {
+                    chrome.storage.local.get("theWord2", function (result) {
+                        const theWord2 = result.theWord2;
+                        if (theWord2) {
+                            console.log(theWord2);
+                        } else {
+                            console.log("Word 2 not set");
+                        }
+                    });
+                },
+            });
+        });
     }
 });
+
